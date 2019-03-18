@@ -44,7 +44,7 @@
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmName": "PAI-SingleBox",
-    "vmSize": "Standard_A7",
+    "vmSize": "Standard_A1_v2”,
     "virtualNetworkName": "myVNet",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
