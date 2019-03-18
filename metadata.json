@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+  "type": "QuickStart",
+  "itemDisplayName": "Deploy a Ubuntu 16.04.4-LTS VM",
+  "icon": "ubuntu",
+  "description": "This template allows you to deploy a Ubuntu 16.04.4-LTS VM. This will deploy a VM in the resource group location and return the FQDN of the VM.",
+  "summary": "This template deploys a Ubuntu 16.04.4-LTS VM.",
+  "githubUsername": "scsmait",
+  "dateUpdated": "2019-03-15"
+}
