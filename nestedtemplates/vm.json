@@ -16,7 +16,14 @@
     },
     "adminUsername": {
       "metadata": {
-        "description": "Username for the Virtual Machine"
+        "description": "Username for the Virtual Machine."
+      },
+      "type": "string"
+    },
+    "authenticationType": {
+      "defaultValue": "password",
+      "metadata": {
+        "description": "Authentication type"
       },
       "type": "string"
     },

@@ -25,7 +25,7 @@
     },
     "commandToExecute": {
       "type": "string"
-    },
+    }
   },
   "resources": [
     {
@@ -50,7 +50,7 @@
   ],
   "outputs": {
     "instanceView": {
-      "value": "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName')).instanceView]",
+      "value": "[reference(resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName'), '')).instanceView]",
       "type": "object"
     }
   }
