@@ -29,6 +29,7 @@
   },
   "resources": [
     {
+      "condition": "ture",
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2017-03-30",
       "name": "[parameters('vmName')]",
@@ -46,9 +47,6 @@
           "commandToExecute": "[parameters('commandToExecute')]"
         }
       }
-    },
-    {
-      "condition": "ture"
     }
   ],
   "outputs": {
