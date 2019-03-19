@@ -5,7 +5,7 @@
     "adminUsername": {
       "value": "PAI_user"
     },
-    "adminPasswordOrKey" : {
+    "adminPassword" : {
       "value": "Abcd&1234"
     }
   }
