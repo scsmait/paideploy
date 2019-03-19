@@ -31,7 +31,7 @@
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "apiVersion": "2017-03-30",
-      "name": "[concat(parameters('vmName'), '-pai-deploy')]",
+      "name": "[concat(parameters('vmName'), '-paideploy')]",
       "location": "[parameters('location')]",
       "dependsOn": [ ],
       "properties": {
