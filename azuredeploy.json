@@ -29,7 +29,6 @@
     "subnetName": "Subnet",
     "publicIPAddressName": "myPublicIP",
     "vmName": "PAI-Deploy",
-    "vmSize": "Standard_B1s",
     "virtualNetworkName": "myVNet",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
