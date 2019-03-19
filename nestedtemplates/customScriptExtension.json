@@ -46,6 +46,9 @@
           "commandToExecute": "[parameters('commandToExecute')]"
         }
       }
+    },
+    {
+      "condition": "[not(parameters('isWindowsOS'))]"
     }
   ],
   "outputs": {
