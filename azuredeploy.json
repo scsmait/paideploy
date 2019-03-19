@@ -53,7 +53,7 @@
   "variables": {
     "scriptCommand": "./script.sh",
     "scriptFile": "script.sh",
-    "vmName": "PAI-Deploy",
+    "vmName": "vm1",
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), '1ubuntu')]",
     "networkSecurityGroupName": "nsg",
     "addressPrefix": "10.0.0.0/16",
