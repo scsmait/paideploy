@@ -1,0 +1,153 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "metadata": {
+        "description": "The Location For the resources"
+      },
+      "type": "string"
+    },
+    "adminPassword": {
+      "metadata": {
+        "description": "OS Admin password"
+      },
+      "type": "securestring"
+    },
+    "adminUsername": {
+      "metadata": {
+        "description": "Username for the Virtual Machine"
+      },
+      "type": "string"
+    },
+    "nsgId": {
+      "defaultValue": null,
+      "metadata": {
+        "description": "The nsg id for the VM"
+      },
+      "type": "string"
+    },
+    "operatingSystem": {
+      "type": "string",
+      "metadata": {
+        "description": "OS for the VM, this is the offer and SKU concatenated with underscores and then mapped to a variable"
+      }
+    },
+    "storageAccountId": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "The storage account Id for boot diagnostics for the VMs"
+      },
+      "type": "string"
+    },
+    "subnetRef": {
+      "type": "string"
+    },
+    "vmSize": {
+      "defaultValue": "Standard_B1s",
+      "metadata": {
+        "description": "The size of the VM to create"
+      },
+      "type": "string"
+    },
+    "vmName": {
+      "metadata": {
+        "description": "The name of the vm"
+      },
+      "type": "string"
+    }
+  },
+  "variables": {
+    "imageReference": {
+      "UbuntuServer_16.04-LTS": {
+        "publisher": "Canonical",
+        "offer": "UbuntuServer",
+        "sku": "16.04-LTS",
+        "version": "latest"
+      }
+    },
+    "publicIPAddressName": "publicIp",
+    "nicName": "nic",
+    "enableBootDiags": "[not(equals(parameters('storageAccountId'), ''))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "apiVersion": "2018-07-01",
+      "name": "[variables('publicIPAddressName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "publicIPAllocationMethod": "Dynamic"
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2018-07-01",
+      "name": "[variables('nicName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[variables('publicIPAddressName')]"
+      ],
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
+              },
+              "subnet": {
+                "id": "[parameters('subnetRef')]"
+              }
+            }
+          }
+        ],
+        "networkSecurityGroup": {
+          "id": "[parameters('nsgId')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2017-03-30",
+      "name": "[parameters('vmName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [
+        "[variables('nicName')]"
+      ],
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('vmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": "[variables('imageReference')[parameters('operatingSystem')]]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+            }
+          ]
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": "[variables('enableBootDiags')]",
+            "storageUri": "[if(variables('enableBootDiags'), reference(parameters('storageAccountId'), '2018-02-01').primaryEndpoints.blob, json('null'))]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "publicIpId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/publicIpAddresses', variables('publicIPAddressName'))]"
+    }
+  }
+}

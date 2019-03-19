@@ -22,10 +22,33 @@
       }
     }
   },
+  "_artifactsLocation": {
+  "type": "string",
+  "metadata": {
+  "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
+      },
+  "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-custom-script-output/"
+    },
+  "_artifactsLocationSasToken": {
+  "type": "securestring",
+  "metadata": {
+  "description": "The sasToken required to access _artifactsLocation."
+      },
+  "defaultValue": ""
+    },
+  "operatingSystem": {
+  "type": "string",
+  "defaultValue": "UbuntuServer_16.04-LTS",
+  "metadata": {
+  "description": "Operating system to use for the virtual machine."
+      },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), '1ubuntu')]",
     "nicName": "myNic",
     "addressPrefix": "10.0.0.0/16",
+    "createVMUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/vm.json', parameters('_artifactsLocationSasToken')))]",
+    "extensionUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/customScriptExtension.json', parameters('_artifactsLocationSasToken')))]"
+  },
     "subnetName": "Subnet",
     "publicIPAddressName": "myPublicIP",
     "vmName": "PAI-Deploy",
