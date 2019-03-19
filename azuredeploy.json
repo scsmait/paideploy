@@ -52,8 +52,7 @@
     "vmName": "PAI-Deploy",
     "virtualNetworkName": "myVNet",
     "createVMUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/vm.json', parameters('_artifactsLocationSasToken')))]",
-    "extensionUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/customScriptExtension.json', parameters('_artifactsLocationSasToken')))]"
-  },
+    "extensionUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/customScriptExtension.json', parameters('_artifactsLocationSasToken')))]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
