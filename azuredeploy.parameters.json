@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "value": "GEN-UNIQUE"
+            "value": "PAI_user"
         },
         "adminPassword": {
-            "value": "GEN-PASSWORD"
+            "value": "Abcd&1234"
         }
    }
 }
