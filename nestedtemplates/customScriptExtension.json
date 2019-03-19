@@ -48,7 +48,7 @@
       }
     },
     {
-      "condition": "[not(parameters('isWindowsOS'))]"
+      "condition": "ture"
     }
   ],
   "outputs": {
