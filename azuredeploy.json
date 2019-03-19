@@ -40,7 +40,8 @@
       "defaultValue": "UbuntuServer_16.04-LTS",
       "metadata": {
         "description": "Operating system to use for the virtual machine."
-      }, 
+      }
+    }
   },
   "variables": {
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), '1ubuntu')]",
@@ -50,6 +51,9 @@
     "publicIPAddressName": "myPublicIP",
     "vmName": "PAI-Deploy",
     "virtualNetworkName": "myVNet",
+    "createVMUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/vm.json', parameters('_artifactsLocationSasToken')))]",
+    "extensionUrl": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/customScriptExtension.json', parameters('_artifactsLocationSasToken')))]"
+  },
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
   "resources": [
