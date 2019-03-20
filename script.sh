@@ -5,7 +5,7 @@
 # write an array delimiter before and after the data we want
 
 sudo apt-get update
-# sudo apt-get install docker.io
+sudo apt-get install docker.io
 # sudo systemctl enable docker
 # sudo systemctl restart docker.service
-echo 'successed'
+echo '成功啦'
