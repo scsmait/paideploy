@@ -134,7 +134,7 @@
         },
         "storageProfile": {
           "imageReference": "[variables('imageReference')[parameters('operatingSystem')]]",
-        "dataDisks": [
+          "dataDisks": [
             {
               "diskSizeGB": 20,
               "lun": 0,
