@@ -7,7 +7,7 @@
 # 安装docker
 sudo apt-get update
 sudo apt-get install docker.io
-sudo systemctl enable docker.service
+# sudo systemctl enable docker.service
 sudo systemctl start docker.service
 
 # 增加nvidia-container-runtime repo地址
@@ -18,5 +18,3 @@ sudo apt-get update
 
 # 添加所需依赖
 sudo apt-get install nvidia-container-runtime python
-
-
