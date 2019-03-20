@@ -17,5 +17,5 @@ curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidi
 sudo apt-get update
 
 # 添加所需依赖
-# sudo apt-get install nvidia-container-runtime python
+sudo apt-get install nvidia-container-runtime python
 
