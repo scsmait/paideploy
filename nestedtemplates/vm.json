@@ -133,7 +133,14 @@
           "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
-          "imageReference": "[variables('imageReference')[parameters('operatingSystem')]]"
+          "imageReference": "[variables('imageReference')[parameters('operatingSystem')]]",
+        "dataDisks": [
+            {
+              "diskSizeGB": 20,
+              "lun": 0,
+              "createOption": "Empty"
+            }
+          ]
         },
         "networkProfile": {
           "networkInterfaces": [
