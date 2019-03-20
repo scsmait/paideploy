@@ -7,5 +7,5 @@
 sudo apt-get update
 sudo apt-get install docker.io
 # sudo systemctl enable docker
-# sudo systemctl restart docker.service
+sudo systemctl start docker.service
 echo '成功啦'
